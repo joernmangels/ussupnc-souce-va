@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+	<TableSelectDialog id="MatnrDialog" contentWidth="60%" contentHeight="60%" noDataText="{i18n>enter_mat}" confirm="handleConfirm"
+		cancel="handleClose" search="handleSearch" liveChange="handleSearch" items="{ds>/MaterialSet}">
+		<ColumnListItem>
+			<cells>
+				<ObjectIdentifier title="{ds>Matnr}"/>
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<!--<ObjectIdentifier title="{ds>Maktg}"/>-->
+				<Text text="{ds>Maktg}"/>
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<!--<Text text="{ds>Material}"/>-->
+				<!--<Text text="{path: 'ds>Material', type : 'sap.ui.model.odata.type.String', constraints: { isDigitSequence : true }}"/>-->
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<!--<Text text="{ds>Purchaseorderitemtext}"/>-->
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<!--<Text text="{ds>Orderquantity}"/>-->
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<!--<Text text="{ds>Baseunit}"/>-->
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column>
+				<header>
+					<Text text="{i18n>mat}"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="{i18n>itemtext}"/>
+				</header>
+			</Column>
+			<!--<Column>-->
+			<!--	<header>-->
+			<!--		<Text text="{i18n>mat}"/>-->
+			<!--	</header>-->
+			<!--</Column>-->
+			<!--<Column>-->
+			<!--	<header>-->
+			<!--		<Text text="{i18n>itemtext}"/>-->
+			<!--	</header>-->
+			<!--</Column>-->
+			<!--<Column>-->
+			<!--	<header>-->
+			<!--		<Text text="{i18n>menge}"/>-->
+			<!--	</header>-->
+			<!--</Column>-->
+			<!--<Column>-->
+			<!--	<header>-->
+			<!--		<Text text="{i18n>einheit}"/>-->
+			<!--	</header>-->
+			<!--</Column>-->
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>

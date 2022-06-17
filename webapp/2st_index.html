@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>USSUPNC-Supplier-NC-Notification-Frontend</title>
+		<script id="sap-ui-bootstrap"
+			src="resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_fiori_3"
+			data-sap-ui-resourceroots='{"de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend": "./"}'
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+			data-sap-ui-async="true"
+			data-sap-ui-frameOptions="trusted">
+		</script>
+      
+      <script>
+//         data-sap-ui-theme="sap_bluecrystal"
+//         data-sap-ui-theme="sap_belize"
+
+// Brauchen wir für WebIDE
+//         src="../../resources/sap-ui-core.js"  
+//         src="../../1.50.0/resources/sap-ui-core.js"  
+//         src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"  
+//         src="https://sapui5.hana.ondemand.com/1.52.23/resources/sap-ui-core.js"
+//         src="https://sapui5.hana.ondemand.com/1.52.22/resources/sap-ui-core.js"
+//         src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"      
+// Brauchen wir für Deployment
+//         src="resources/sap-ui-core.js"  
+//  	   src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"      
+//         data-sap-ui-appCachebuster="./"
+
+         sap.ui.getCore().attachInit(function () {
+            new sap.m.Shell( "Shell1", {
+            	title: "QM-USSUPNC",
+            	app : new sap.ui.core.ComponentContainer({
+                  name : "de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend",
+                  height : "100%",
+                  manifestFirst: true,
+				  async: true
+               })
+            }).placeAt("content");
+         });
+      </script>
+   </head>
+   
+    <body class="sapUiBody" id="content">
+   	</body>
+</html>

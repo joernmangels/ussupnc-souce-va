@@ -1,0 +1,92 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+	<Dialog id="UploadDialog" class="TextBold" contentWidth="40%" contentHeight="40%">
+		<!--<UploadCollection id="UploadCollection" -->
+		<!--                  uploadUrl="{upl>/uploadurl}"-->
+		<!--		          maximumFilenameLength="255"-->
+		<!--                  maximumFileSize="10"-->
+		<!--                  multiple="true"-->
+		<!--                  sameFilenameAllowed="false"-->
+		<!--	              instantUpload="false" -->
+		<!--	              noDataDescription="{i18n>useupload}"-->
+		<!--	              noDataText="{i18n>uplnodata}"-->
+		<!--	              change="onChange"-->
+		<!--	              filenameLengthExceed="onFilenameLengthExceed"-->
+		<!--	              fileSizeExceed="onFileSizeExceed"-->
+		<!--	              beforeUploadStarts="onBeforeUploadStarts"-->
+		<!--	              uploadComplete="onUploadComplete"-->
+		<!--	              />-->
+		<upload:UploadSet id="UploadCollection" 
+		                  instantUpload="false"
+		                  showIcons="false" 
+		                  uploadEnabled="true" 
+		                  terminationEnabled="false"
+			              maxFileNameLength="255" 
+			              maxFileSize="20" 
+			              afterItemAdded="onAfterItemAdded"
+			              fileNameLengthExceeded="onfileNameLengthExceeded"
+			              fileSizeExceeded="onfileSizeExceeded"
+			              noDataText="{i18n>uplnodata}"
+			              uploadUrl="{upl>/uploadurl}">
+			              <!--noDataDescription="{i18n>useupload}"-->
+						<!--<upload:UploadSetItem-->
+						<!--	fileName="{fileName}"-->
+						<!--	mediaType="{mediaType}"-->
+						<!--	url="{url}"-->
+						<!--	enabledEdit="false"-->
+						<!--	visibleEdit="false"-->
+						<!--	openPressed="onOpenPressed"-->
+						<!--/>-->
+			              <!--items="{path: '/items', templateShareable: false}">-->
+						  <!--mediaTypes="text/plain,application/msword,image/jpeg" -->
+			<!--items="{path: '/items', templateShareable: false}">-->
+			<!--<upload:toolbar>-->
+			<!--	<OverflowToolbar>-->
+			<!--		<Button-->
+			<!--				id="uploadSelectedButton"-->
+			<!--				text="Upload selected"-->
+			<!--				press="onUploadSelectedButton"/>-->
+			<!--		<Button-->
+			<!--				id="downloadSelectedButton"-->
+			<!--				text="Download selected"-->
+			<!--				press="onDownloadSelectedButton"/>-->
+			<!--	</OverflowToolbar>-->
+			<!--</upload:toolbar>-->
+			<!--<upload:items>-->
+			<!--</upload:items>-->
+			<!--<upload:items>-->
+			<!--	<upload:UploadSetItem-->
+			<!--			fileName="{fileName}"-->
+			<!--			mediaType="{mediaType}"-->
+			<!--			url="{url}"-->
+			<!--			thumbnailUrl="{thumbnailUrl}"-->
+			<!--			attributes="{path: 'attributes', templateShareable: false}"-->
+			<!--			markers="{path: 'markers', templateShareable: false}"-->
+			<!--			statuses="{path: 'statuses', templateShareable: false}"-->
+			<!--			uploadState="{uploadState}">-->
+			<!--		<upload:attributes>-->
+			<!--			<ObjectAttribute-->
+			<!--					title="{title}"-->
+			<!--					text="{text}"-->
+			<!--					active="{active}"/>-->
+			<!--		</upload:attributes>-->
+			<!--		<upload:markers>-->
+			<!--			<ObjectMarker-->
+			<!--					type="{type}"-->
+			<!--					visibility="{visibility}"/>-->
+			<!--		</upload:markers>-->
+			<!--		<upload:statuses>-->
+			<!--			<ObjectStatus-->
+			<!--					title="{title}"-->
+			<!--					text="{text}"-->
+			<!--					state="{state}"-->
+			<!--					icon="{icon}"-->
+			<!--					active="{active}"/>-->
+			<!--		</upload:statuses>-->
+			<!--	</upload:UploadSetItem>-->
+			<!--</upload:items>-->
+		</upload:UploadSet>
+		<buttons>
+			<Button id="close" text="{i18n>close}" press="handleClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

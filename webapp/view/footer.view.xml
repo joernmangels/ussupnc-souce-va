@@ -1,0 +1,38 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:layout="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core" class="sapUiSizeCompact"
+	controllerName="de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend.controller.footer">
+	<Panel width="auto" class="sapUiResponsiveMargin">
+		<!--	<headerToolbar>-->
+		<!--		<OverflowToolbar height="3rem">-->
+		<!--<Title text="{i18n>pos} {i18n>select}"/>-->
+		<!--<ToolbarSpacer />-->
+		<!--<Button icon="sap-icon://settings" />-->
+		<!--<Button icon="sap-icon://drop-down-list" />-->
+		<!--		</OverflowToolbar>-->
+		<!--	</headerToolbar>-->
+		<content>
+			<!--<Button class="sapUiSmallMarginBottom" text="{i18n>save}" press="handleSave" icon="sap-icon://save"/>-->
+			<!--<Button icon="sap-icon://sys-add" press="onLineAdd" type="Transparent"-->
+			<!--	enabled="{parts:['pl>Pruefdatum','pl>Scope','pl>ScopeInd','pl>SOLLSTPUMF','pl>ANZWERTG', 'pl>Prueflos_Key_Modus'], formatter: 'de.enercon.usbee.controller.utils.Formatter.button_addline_MK' }"/>-->
+			<FlexBox alignItems="End" justifyContent="Center">
+				<items>
+					<!--<Button text="Test" press="onButtonTest"/>-->
+					<Button text="{i18n>save}" press="handleSave" icon="sap-icon://save" type="Emphasized"
+						visible="{= ${dataset>/_Ebelp} !== '' ? true : false || ${dataset>/_Matnr} !== '' ? true : false }"
+						enabled="{ parts:['dataset>/_Input_art','dataset>/_Input_Ser_Charg','dataset>/_Ebeln','dataset>/_Textl','dataset>/_Qmnam','dataset>/_Serchg','dataset>/_Rkmng', 'dataset>/_Mgein', 'dataset>/_Eneap','dataset>/_Errorcode','dataset>/_Bzmng'], 
+						           formatter: 'de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend.controller.utils.Formatter.enable_save' }"/>
+				</items>
+			</FlexBox>
+		</content>
+	</Panel>
+</mvc:View>
+<!--_Supplier: "",-->
+<!--_Ebeln: "",-->
+<!--_Ebelp: "",-->
+<!--_Matnr: "",-->
+<!--_Maktx: "",-->
+<!--_Smatnr: "",-->
+<!--_Textl: "",-->
+<!--_Qmnam: "",-->
+<!--_Serchg: "",-->
+<!--_Rkmng: "",-->
+<!--_Mgein: ""-->

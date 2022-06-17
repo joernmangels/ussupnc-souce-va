@@ -1,0 +1,306 @@
+<mvc:View controllerName="de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend.controller.main" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Shell id="Shell1" appWidthLimited="{appinfo>/_appWidthLimited}" class="sapUiSizeCompact">
+		<App id="app">
+			<pages>
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<Page>
+					<customHeader>
+						<Bar>
+							<contentLeft>
+								<HBox>
+									<Text text="{ path: 'appinfo>/_clock1', type: 'sap.ui.model.type.Date', formatOptions: { style: 'full' } }" class="sapUiSmallMarginEnd"/>
+									<Label id="oLabelClock" text="{appinfo>/_clock2}"/>
+								</HBox>
+							</contentLeft>
+							<contentMiddle>
+								<Title text="{i18n>title} - {appinfo>/_AppVersion} - ({userset>/_Sysid})" class="TextBold"/>
+								<!--<Title text="{i18n>title} - {appinfo>/_AppVersion}" class="TextBold"/>-->
+							</contentMiddle>
+							<contentRight>
+								<!--<Button icon="sap-icon://pdf-attachment" press="handleDokuPress" class="sapUiSmallMarginBottom" tooltip="{i18n>dokutitles}"/>-->
+								<!--<Button icon="sap-icon://user-settings" press="handleSettings" class="sapUiSmallMarginBottom" tooltip="{i18n>usersettings}"/>-->
+								<!--<Button icon="sap-icon://refresh" press="handleReload" class="sapUiSmallMarginBottom" tooltip="{i18n>reload}"/>-->
+								<ToggleButton icon="sap-icon://full-screen" press="handleFullscreen1" class="sapUiSmallMarginBottom" tooltip="{i18n>fullscreen}"
+									visible="{appinfo>/_desktop}"/>
+								<Image decorative="false" densityAware="false" press="handleLogoPress" src="{appinfo>/_imagepath}/en_logo.png" width="8em">
+									<layoutData>
+										<FlexItemData growFactor="1"/>
+									</layoutData>
+								</Image>
+							</contentRight>
+						</Bar>
+					</customHeader>
+					<content>
+						<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+						<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+						<!--visible="{= ${dataset>/_Ebeln} !== '' ? true : false || ${dataset>/_Matnr} !== '' ? true : false }" -->
+						<!--<Panel width="auto" class="sapUiResponsiveMargin" visible="{= ${userset>/_Nodata} === true }">-->
+						<Panel id="nodatapanel" width="auto" class="sapUiResponsiveMargin" visible="false">
+							<VBox>
+								<Title level="H1" text="{i18n>username}: {userset>/_Username}"/>
+								<!--<Title level="H1" text="{i18n>nodata}"/>-->
+								<!--<ObjectStatus class="sapUiSmallMarginTop" text="{i18n>nodata}" inverted="true" state="Error" icon="sap-icon://error"/>-->
+								<ObjectStatus class="sapUiSmallMarginTop" text="{i18n>nodata}" active="true" state="Error" icon="sap-icon://alert"/>
+							</VBox>
+						</Panel>
+						
+						<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+						<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+						<!--<mvc:XMLView viewName="de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend.view.header"/>-->
+						<!--<mvc:XMLView viewName="de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend.view.input1"/>-->
+						<Panel id="lifnumpanel" width="auto" class="sapUiResponsiveMargin" visible="false">
+							<ObjectHeader id="OH1" condensed="true" responsive="true" intro="{ds>Streetname}, {ds>Postalcode} {ds>Cityname} " title="{ds>Suppliername}">
+								<attributes>
+									<!--<ObjectAttribute title="{i18n>detail1-muss}" text="{i18n>detail1-ja}" visible="{= ${pl>Obligatory} === 'X' ? true : false }"/>-->
+									<!--	<ObjectAttribute title="ObjectAttribute1"/>-->
+									<!--	<ObjectAttribute title="ObjectAttribute2"/>-->
+									<ObjectAttribute title="{i18n>lifnum}"
+										text="{path: 'ds>Supplier', type : 'sap.ui.model.odata.type.String', constraints: { isDigitSequence : true }}"/>
+								</attributes>
+								<!--<statuses>-->
+								<!--<ObjectStatus text="{i18n>detail2-zupruefen} >= {pl>SOLLSTPUMF} {pl>SmplUnit}" state="Success"-->
+								<!--	visible="{= ${pl>ScopeInd} === '>' ? true : false }"/>-->
+								<!--	<ObjectStatus text="ObjectStatus1" state="Success"/>-->
+								<!--	<ObjectStatus text="ObjectStatus2"/>-->
+								<!--</statuses>-->
+							</ObjectHeader>
+						</Panel>
+						<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+						<Panel id="selectpanel" width="auto" class="sapUiResponsiveMargin" visible="false">
+							<VBox visible="{= ${userset>/_Input_matnr} === true }">
+								<Label id="labelSS" labelFor="ta1" displayOnly="true" wrapping="true" text="{i18n>datafirst}" design="Bold"/>
+								<HBox fitContainer="true">
+									<SegmentedButton id="segbutton" width="310px" selectedKey="s1" selectionChange="onSegButtonChange">
+										<items>
+											<SegmentedButtonItem text="{i18n>po}" key="B"/>
+											<SegmentedButtonItem text="{i18n>mat}" key="M"/>
+										</items>
+									</SegmentedButton>
+								</HBox>
+							</VBox>
+							<!--<headerToolbar>-->
+							<!--	<OverflowToolbar height="3rem">-->
+							<!--		<Title text="{i18n>pos} {i18n>select}"/>-->
+							<!--<ToolbarSpacer />-->
+							<!--<Button icon="sap-icon://settings" />-->
+							<!--<Button icon="sap-icon://drop-down-list" />-->
+							<!--	</OverflowToolbar>-->
+							<!--</headerToolbar>-->
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<!--Eingabe über Bestellung+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<FlexBox height="70px" direction="Column" alignItems="Start" visible="{= ${dataset>/_Input_art} === 'B' ? true : false }">
+								<Label id="label3" labelFor="ta1" displayOnly="true" wrapping="true" text="{i18n>databest}" design="Bold"/>
+								<HBox fitContainer="true">
+									<items>
+										<Input id="PurchaseOrderNo" value="{dataset>/_Ebeln}" type="Text" placeholder="{i18n>po} {i18n>select}" showValueHelp="true"
+											valueHelpOnly="true" valueHelpRequest="handleValueHelpPO" class="sapUiSmallMarginTop" width="200px"/>
+										<Input id="PurchaseOrderItem" value="{dataset>/_Ebelp}" type="Text" placeholder="{i18n>pop} {i18n>select}" showValueHelp="true"
+											valueHelpOnly="true" valueHelpRequest="handleValueHelpPOP" class="sapUiMediumMarginBegin sapUiSmallMarginTop"
+											visible="{= ${dataset>/_Ebeln} !== '' ? true : false }" width="230px"/>
+										<VBox fitContainer="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+											<layoutData>
+												<FlexItemData growFactor="7"/>
+											</layoutData>
+											<items>
+												<MessageStrip type="Success"
+													text="{i18n>mat}: {path: 'dataset>/_Matnr', type : 'sap.ui.model.odata.type.String', constraints: { isDigitSequence : true }} - {dataset>/_Maktx}"
+													visible="{= ${dataset>/_Ebelp} !== '' ? true : false }" class="sapUiSmallMarginBottom sapUiSizeCompact"/>
+												<MessageStrip type="Success" text="{i18n>smat}: {dataset>/_Smatnr}" visible="{= ${dataset>/_Smatnr} !== '' ? true : false }"
+													class="sapUiSmallMarginBottom sapUiSizeCompact"/>
+											</items>
+										</VBox>
+									</items>
+								</HBox>
+							</FlexBox>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<!--Eingabe über MaterialNr+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<FlexBox visible="{= ${dataset>/_Input_art} === 'M' ? true : false }" height="70px" direction="Column" alignItems="Start">
+								<Label id="labelM3" labelFor="taM1" displayOnly="true" wrapping="true" text="{i18n>datamatnr}" design="Bold"/>
+								<HBox fitContainer="true">
+									<items>
+										<Input id="MaterialNo" value="{dataset>/_Matnr}" type="Text" placeholder="{i18n>mat} {i18n>select}" showValueHelp="true"
+											valueHelpOnly="true" valueHelpRequest="handleValueHelpMAT" class="sapUiSmallMarginTop" width="200px"/>
+										<VBox fitContainer="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+											<layoutData>
+												<FlexItemData growFactor="7"/>
+											</layoutData>
+											<items>
+												<MessageStrip type="Success"
+													text="{i18n>mat}: {path: 'dataset>/_Matnr', type : 'sap.ui.model.odata.type.String', constraints: { isDigitSequence : true }} - {dataset>/_Maktx}"
+													visible="{= ${dataset>/_Matnr} !== '' ? true : false }" class="sapUiSmallMarginBottom sapUiSizeCompact"/>
+												<!--<MessageStrip type="Success" text="{i18n>smat}: {dataset>/_Smatnr}" visible="{= ${dataset>/_Smatnr} !== '' ? true : false }"-->
+												<!--	class="sapUiSmallMarginBottom sapUiSizeCompact"/>-->
+											</items>
+										</VBox>
+									</items>
+								</HBox>
+							</FlexBox>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<!--<content>-->
+							<!--<Label id="label3" labelFor="ta1" displayOnly="true" wrapping="true" text="{i18n>databest}" design="Bold"/>-->
+							<!--<HBox fitContainer="true">-->
+							<!--	<items>-->
+							<!--		<Input id="PurchaseOrderNo" value="{dataset>/_Ebeln}" type="Text" placeholder="{i18n>po} {i18n>select}" showValueHelp="true"-->
+							<!--			valueHelpOnly="true" valueHelpRequest="handleValueHelpPO" class="sapUiSmallMarginTop" width="200px"/>-->
+							<!--		<Input id="PurchaseOrderItem" value="{dataset>/_Ebelp}" type="Text" placeholder="{i18n>pop} {i18n>select}" showValueHelp="true"-->
+							<!--			valueHelpOnly="true" valueHelpRequest="handleValueHelpPOP" class="sapUiMediumMarginBegin sapUiSmallMarginTop"-->
+							<!--			visible="{= ${dataset>/_Ebeln} !== '' ? true : false }" width="230px"/>-->
+							<!--		<VBox fitContainer="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop">-->
+							<!--			<layoutData>-->
+							<!--				<FlexItemData growFactor="7"/>-->
+							<!--			</layoutData>-->
+							<!--			<items>-->
+							<!--				<MessageStrip type="Success"-->
+							<!--					text="{i18n>mat}: {path: 'dataset>/_Matnr', type : 'sap.ui.model.odata.type.String', constraints: { isDigitSequence : true }} - {dataset>/_Maktx}"-->
+							<!--					visible="{= ${dataset>/_Ebelp} !== '' ? true : false }" class="sapUiSmallMarginBottom sapUiSizeCompact"/>-->
+							<!--				<MessageStrip type="Success" text="{i18n>smat}: {dataset>/_Smatnr}" visible="{= ${dataset>/_Smatnr} !== '' ? true : false }"-->
+							<!--					class="sapUiSmallMarginBottom sapUiSizeCompact"/>-->
+							<!--			</items>-->
+							<!--		</VBox>-->
+							<!--	</items>-->
+							<!--</HBox>-->
+							<!--</content>-->
+						</Panel>
+						<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+						<Panel width="auto" class="sapUiResponsiveMargin"
+							visible="{= ${dataset>/_Ebelp} !== '' ? true : false || ${dataset>/_Matnr} !== '' ? true : false }">
+							<!--<headerToolbar>-->
+							<!--	<OverflowToolbar height="3rem">-->
+							<!--		<Title text="{i18n>pos} {i18n>select}"/>-->
+							<!--	</OverflowToolbar>-->
+							<!--</headerToolbar>-->
+							<content>
+								<HBox fitContainer="true">
+									<items>
+										<VBox fitContainer="true">
+											<!--	<Label text="{i18n>ptext}" labelFor="ta1" design="Bold" width="430px"/>-->
+											<Label id="label" labelFor="ta1" displayOnly="true" wrapping="true" text="{i18n>ptext}" width="420px" design="Bold"/>
+											<!--<TextArea id="ta1" value="{i18n>ptext}" rows="8" width="430px"/>-->
+											<TextArea id="ta1" rows="12" width="420px" value="{dataset>/_Textl}"/>
+											<!--<HBox class="sapUiSmallMarginTop">-->
+											<!--	<Label text="{i18n>errorcode}" labelFor="errorcode" width="185px" class="sapUiSmallMarginTop" design="Bold"/>-->
+											<!--	<Input id="errorcode" value="{dataset>/_Errorcode}" type="Text" placeholder="{i18n>errorcode}" visible="{= ${dataset>/_Ebeln} !== '' ? true : false }"-->
+											<!--		width="245px" valueLiveUpdate="true"/>-->
+											<!--</HBox>-->
+										</VBox>
+										<VBox fitContainer="true">
+											<layoutData>
+												<FlexItemData growFactor="7"/>
+											</layoutData>
+											<items>
+												<Label id="label2" labelFor="ta1" displayOnly="true" wrapping="true" text="{i18n>data}" width="430px" class="sapUiSmallMarginBegin"
+													design="Bold"/>
+												<HBox class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+													<Label text="{i18n>ihrname}" labelFor="name" width="200px" class="sapUiSmallMarginBegin sapUiTinyMarginTop" design="Bold"/>
+													<Input id="name" value="{dataset>/_Qmnam}" type="Text" placeholder="{i18n>ihrname}"
+														visible="{= ${dataset>/_Ebeln} !== '' ? true : false || ${dataset>/_Matnr} !== '' ? true : false }" width="300px" valueLiveUpdate="true"
+														maxLength="12"/>
+													<Button type="Accept" text="{i18n>uploadbutton} ({dataset>/_Filescount})" press="onuploadbuttonPress" class="sapUiSmallMarginBegin"/>
+												</HBox>
+												<HBox class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+													<Label text="{i18n>eneap}" labelFor="eneap" width="200px" class="sapUiSmallMarginBegin sapUiTinyMarginTop" design="Bold"/>
+													<Input id="eneap" value="{dataset>/_Eneap}" type="Text" placeholder="{i18n>eneap}"
+														visible="{= ${dataset>/_Ebeln} !== '' ? true : false || ${dataset>/_Matnr} !== '' ? true : false }" width="300px" valueLiveUpdate="true"
+														maxLength="30"/>
+												</HBox>
+												<HBox class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+													<Label
+														text="{ parts:['dataset>/_Matnr','dataset>/_Ebeln','dataset>/_InputQuan'], formatter: 'de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend.controller.utils.Formatter.text_serial' }"
+														labelFor="sel" width="200px" class="sapUiSmallMarginBegin sapUiTinyMarginTop" design="Bold"/>
+													<Input id="serchg" value="{dataset>/_Serchg}" type="Text"
+														visible="{= ${dataset>/_Ebeln} !== '' ? true : false || ${dataset>/_Matnr} !== '' ? true : false }" width="300px" valueLiveUpdate="true"
+														maxLength="18" enabled="{dataset>/_Input_Ser_Charg}"
+														placeholder="{ parts:['dataset>/_Matnr','dataset>/_Ebeln','dataset>/_InputQuan'], formatter: 'de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend.controller.utils.Formatter.text_serial' }"/>
+												</HBox>
+												<HBox class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+													<!--="{ path: 'pl>Results_Entered_P', formatter: 'de.enercon.usbee.controller.utils.Formatter.string_to_float' }"-->
+													<!--enabled="{ parts:['dataset>/_Textl','dataset>/_Qmnam','dataset>/_Serchg','dataset>/_Rkmng', 'dataset>/_Mgein',-->
+													<!--'dataset>/_Eneap','dataset>/_Errorcode','dataset>/_Bzmng'], formatter:-->
+													<!--'de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend.controller.utils.Formatter.enable_save' }"/>-->
+													<Label
+														text="{ parts:['dataset>/_Matnr','dataset>/_Ebeln','dataset>/_InputQuan','dataset>/_Bzmng'], formatter: 'de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend.controller.utils.Formatter.text_menge' }"
+														labelFor="mng" width="200px" class="sapUiSmallMarginBegin sapUiTinyMarginTop" design="Bold"/>
+													<!--<Label text="{i18n>menge} ({i18n>max} {dataset>/_Bzmng})" labelFor="mng" width="200px" class="sapUiSmallMarginBegin sapUiTinyMarginTop"-->
+													<!--	design="Bold" visible="{dataset>/_InputQuan}"/>-->
+													<!--<Label text="{i18n>menge}" labelFor="mng" width="200px" class="sapUiSmallMarginBegin sapUiTinyMarginTop"-->
+													<!--	design="Bold" visible="{!dataset>/_InputQuan}"/>-->
+													<Input id="mng" value="{dataset>/_Rkmng}" type="Number" placeholder="{i18n>menge}"
+														visible="{= ${dataset>/_Ebeln} !== '' ? true : false || ${dataset>/_Matnr} !== '' ? true : false }" width="100px" valueLiveUpdate="true"
+														change="onQuantityChange" enabled="{dataset>/_InputQuan}"/>
+													<Label text="{i18n>einheit}" labelFor="einh" width="80px" class="sapUiSmallMarginBegin sapUiTinyMarginTop" design="Bold"/>
+													<Input id="einh" value="{dataset>/_Mgein}" type="Text" placeholder="{i18n>einheit}"
+														visible="{= ${dataset>/_Ebeln} !== '' ? true : false || ${dataset>/_Matnr} !== '' ? true : false }" width="100px" editable="false"
+														valueLiveUpdate="true"/>
+												</HBox>
+												<HBox class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+													<Label text="{i18n>errorcode}" labelFor="errorcode" width="200px" class="sapUiSmallMarginBegin sapUiTinyMarginTop" design="Bold"/>
+													<Input id="errorcode" value="{dataset>/_Errorcode}" type="Text" placeholder="{i18n>errorcode}"
+														visible="{= ${dataset>/_Ebeln} !== '' ? true : false || ${dataset>/_Matnr} !== '' ? true : false }" width="300px" valueLiveUpdate="true"
+														showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelpErr"/>
+												</HBox>
+											</items>
+										</VBox>
+										<!--<VBox fitContainer="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop">-->
+										<!--	<layoutData>-->
+										<!--		<FlexItemData growFactor="7"/>-->
+										<!--	</layoutData>-->
+										<!--	<items></items>-->
+										<!--</VBox>-->
+									</items>
+								</HBox>
+								<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+								<!--<List visible="{= ${dataset>/_Ebelp} !== '' ? true : false }">-->
+								<!--	<CustomListItem>-->
+								<!--		<HBox>-->
+								<!--<core:Icon size="2rem" src="sap-icon://attachment-photo" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>-->
+								<!--			<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" width="20%">-->
+								<!--				<Link text="Material" target="{ProductPicUrl}" press="handlePress"/>-->
+								<!--				<Label text="Kurztext Kurztext Kurztext"/>-->
+								<!--			</VBox>-->
+								<!--			<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" width="40%">-->
+								<!--				<Label text="Schilderung des Problems" labelFor="ta1"/>-->
+								<!--<l:VerticalLayout class="sapUiContentPadding" width="100%">-->
+								<!--	<l:content>-->
+								<!--				<TextArea id="ta1" width="100%" value="Hier kommt der Problemtext rein" rows="5"/>-->
+								<!--	</l:content>-->
+								<!--</l:VerticalLayout>-->
+								<!--				<Label text="Ihr Name" labelFor="name" class="sapUiTinyMarginTop"/>-->
+								<!--				<Input id="name" value="" type="Text" placeholder="{i18n>pop} {i18n>select}" visible="{= ${dataset>/_Ebeln} !== '' ? true : false }"-->
+								<!--					width="80%"/>-->
+								<!--			</VBox>-->
+								<!--			<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTop" width="30%">-->
+								<!--				<Label text="Serialnummer" labelFor="sel"/>-->
+								<!--				<Select id="sel" width="80%">-->
+								<!--					<core:Item key="GR" text="Greece"/>-->
+								<!--					<core:Item key="MX" text="Mexico"/>-->
+								<!--					<core:Item key="NO" text="Norway"/>-->
+								<!--					<core:Item key="NZ" text="New Zealand"/>-->
+								<!--					<core:Item key="NL" text="Netherlands"/>-->
+								<!--				</Select>-->
+								<!--				<Label text="Charge" labelFor="chg" class="sapUiTinyMarginTop"/>-->
+								<!--				<Input id="chg" value="" type="Text" placeholder="{i18n>pop} {i18n>select}" visible="{= ${dataset>/_Ebeln} !== '' ? true : false }"-->
+								<!--					width="80%"/>-->
+								<!--				<Label text="Menge" labelFor="mng" class="sapUiTinyMarginTop"/>-->
+								<!--				<Input id="mng" value="" type="Text" placeholder="{i18n>pop} {i18n>select}" visible="{= ${dataset>/_Ebeln} !== '' ? true : false }"-->
+								<!--					width="80%"/>-->
+								<!--			</VBox>-->
+								<!--		</HBox>-->
+								<!--	</CustomListItem>-->
+								<!--</List>-->
+							</content>
+						</Panel>
+						<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+						<mvc:XMLView viewName="de.enercon.ussupnc.USSUPNC-Supplier-NC-Notification-Frontend.view.footer"
+							visible="{= ${userset>/_Nodata} === false }"/>
+					</content>
+					<!--<mvc:XMLView viewName="de.enercon.usbee.view.home_tilemenu"-->
+					<!--	visible="{parts:['GLOSET>/_settings_read','glo>/_launchpad','GLOSET>/_Super_Access'], formatter: 'de.enercon.usbee.controller.utils.Formatter.app_allowed_tm' }"/>-->
+					<!--<mvc:XMLView viewName="de.enercon.usbee.view.no_launchpad"-->
+					<!--	visible="{parts:['GLOSET>/_settings_read','glo>/_launchpad','GLOSET>/_Super_Access'], formatter: 'de.enercon.usbee.controller.utils.Formatter.app_allowed_no' }"/>-->
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

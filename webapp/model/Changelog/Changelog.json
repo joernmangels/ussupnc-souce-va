@@ -1,0 +1,27 @@
+{
+	"Changelog": [{
+		"version": "0.0.1",
+		"features": "Initiales Release für Betatest",
+		"release": "30.04.2021"
+	},{
+		"version": "0.0.2",
+		"features": "Bugfix1",
+		"release": "04.05.2021"
+	},{
+		"version": "0.0.3",
+		"features": "Bugfix2",
+		"release": "17.05.2021"
+	},{
+		"version": "0.0.4",
+		"features": "Bugfix3",
+		"release": "19.05.2021"
+	},{
+		"version": "0.0.5",
+		"features": "Bugfix4",
+		"release": "20.05.2021"
+	},{
+		"version": "0.0.13",
+		"features": "Enabel Matnr/Bugfixes",
+		"release": "16.06.2022"
+	}]
+}

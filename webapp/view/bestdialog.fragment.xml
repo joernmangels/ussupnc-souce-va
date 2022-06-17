@@ -1,0 +1,77 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+	<!--<SelectDialog-->
+	<!--	noDataText="{i18n>no_po}"-->
+	<!--	title="{i18n>po} {i18n>select}"-->
+	<!--	search="handleSearch"-->
+	<!--	confirm="handleValueHelpClose"-->
+	<!--	cancel="handleValueHelpClose"-->
+	<!--	showClearButton="true"-->
+	<!--	items="{-->
+	<!--		path : 'ds>TOBEST',-->
+	<!--		sorter : {-->
+	<!--			path : 'Purchaseorder',-->
+	<!--			descending : false-->
+	<!--		}-->
+	<!--	}">-->
+	<!--	<StandardListItem selected="{selected}"-->
+	<!--		title="{Name}"-->
+	<!--		description="{ProductId}"-->
+	<!--		icon="{ProductPicUrl}"-->
+	<!--		iconDensityAware="false"-->
+	<!--		iconInset="false"-->
+	<!--		type="Active" />-->
+	<!--</SelectDialog>-->
+	<TableSelectDialog id="BestDialog" contentWidth="60%" contentHeight="60%" noDataText="{i18n>no_po}"
+		search="handleSearch" liveChange="handleSearch" confirm="handleConfirm" cancel="handleClose" items="{ds>TOBEST}">
+		<ColumnListItem>
+			<cells>
+				<ObjectIdentifier title="{ds>Purchaseorder}"/>
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<!--<Text text="{ds>Supplier}"/>-->
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<!--<Text text="{ds>Creationdate}"/>-->
+				<!--<Text text="{path : 'ds>Creationdate', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'short'}}"/>-->
+				<Text text="{path : 'ds>Creationdate', type : 'sap.ui.model.type.DateTime', formatOptions: { pattern : 'dd.MM.yyyy'}}"/>
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<Text text="{path : 'ds>Purchaseorderdate', type : 'sap.ui.model.type.DateTime', formatOptions: { pattern : 'dd.MM.yyyy'}}"/>
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<!--<Text text="{ds>Createdbyuser}"/>-->
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+				<Text text="{ds>Anzpos}"/>
+				<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column>
+				<header>
+					<Text text="{i18n>po}"/>
+				</header>
+			</Column>
+			<!--<Column>-->
+			<!--	<header>-->
+			<!--		<Text text="{i18n>lifnum}"/>-->
+			<!--	</header>-->
+			<!--</Column>-->
+			<Column>
+				<header>
+					<Text text="{i18n>creationdate}"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="{i18n>purchaseorderdate}"/>
+				</header>
+			</Column>
+			<!--<Column>-->
+			<!--	<header>-->
+			<!--		<Text text="{i18n>createdbyuser}"/>-->
+			<!--	</header>-->
+			<!--</Column>-->
+			<Column>
+				<header>
+					<Text text="{i18n>anzpos}"/>
+				</header>
+			</Column>			
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>
